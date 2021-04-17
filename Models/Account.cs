@@ -10,5 +10,7 @@ namespace AdvancedCSharpConceptsConsole.Models
     {
         public string NameFirst { get; set; }
         public string NameLast { get; set; }
+
+        public int MyProperty { get; set; }
     }
 }
