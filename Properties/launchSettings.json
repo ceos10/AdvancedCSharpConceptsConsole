@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AdvancedCSharpConceptsConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "\"DELEGATES\""
+    }
+  }
+}
