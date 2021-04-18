@@ -38,9 +38,13 @@ namespace AdvancedCSharpConceptsConsole
                         var service1 = _serviceProvider.GetService<Delegates>();
                         service1.RunDelegateExample();
                         break;
-                    case ("LINQ"):
-                        var service2 = _serviceProvider.GetService<Linq>();
-                        await service2.CallStoredProcedure();
+                    case ("EVENT"):
+                        var service2 = _serviceProvider.GetService<Event>();
+                        service2.RunEventExample();
+                        break;
+                    case ("ANONYMOUSTYPE"):
+                        var service3 = _serviceProvider.GetService<AnonymousType>();
+                        service3.RunAnonymousTypeExample();
                         break;
                     default:
                         break;

@@ -32,8 +32,12 @@ namespace AdvancedCSharpConceptsConsole
                     services.AddSingleton<Delegates>();
                     break;
 
-                case "LINQ":
-                    services.AddSingleton<Linq>();
+                case "EVENT":
+                    services.AddSingleton<Event>();
+                    break;
+
+                case "ANONYMOUSTYPE":
+                    services.AddSingleton<AnonymousType>();
                     break;
             }
 

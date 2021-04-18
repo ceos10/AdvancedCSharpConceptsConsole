@@ -5,54 +5,61 @@ using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
 {
-    public class Action : IDisposable
+    public static class EmployeeExtensions
+    {
+        //extension method
+        public static void PrintInformation(this Employee e) 
+        {
+            Console.WriteLine($"{e.Name}, {e.Experience} years of experience");
+        }
+    }
+
+    public class ExtensionMethod : IDisposable
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public Action(IEmployeeRepository employeeRepository)
+        public ExtensionMethod(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public void RunActionExample()
+        public void RunExtensionMethodExample()
         {
-            //list of employees
+            //Create a list of employees
             List<Employee> employees = _employeeRepository.GetEmployees();
 
-            //Action with lambda expression
-            Action<Employee> printSeniority = (Employee e) => {
+            //Func with anonymus method
+            Func<Employee, bool> isJunior = delegate (Employee e) {
+                return e.Experience < 3;
+            };
 
-                string seniority;
-                
-                if (e.Experience < 3)
-                {
-                    seniority = "Junior";
-                }
-                else if (e.Experience >= 3 && e.Experience < 5)
-                {
-                    seniority = "SemiSenior";
-                }
-                else 
-                {
-                    seniority = "Senior";
-                }
+            //Func with lambda expression
+            Func<Employee, bool> isSemiSenior = (Employee e) => e.Experience >= 3 && e.Experience < 5;
 
-                Console.WriteLine($"{e.Name} is a {seniority} with {e.Experience} years of experience");
+            //Func with anonymus method
+            Func<Employee, bool> isSenior = delegate (Employee e) {
+                return e.Experience > 5;
             };
 
             //Display seniority
-            ShowSeniority("Junior", employees, printSeniority);
+            ShowSeniority("Junior", employees, isJunior);
+            ShowSeniority("SemiSenior", employees, isSemiSenior);
+            ShowSeniority("Senior", employees, isSenior);
 
             Console.Read();
         }
 
-        static void ShowSeniority(string seniority, List<Employee> employees, Action<Employee> printSeniority)
+        static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filter)
         {
             Console.WriteLine(seniority);
 
             foreach (var e in employees)
             {
-                printSeniority(e);
+                if (filter(e))
+                {
+                    //use extension method
+                    e.PrintInformation();
+                }
             }
 
             Console.WriteLine();

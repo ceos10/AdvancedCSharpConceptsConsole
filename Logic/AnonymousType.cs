@@ -1,61 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AdvancedCSharpConceptsConsole.Models;
 using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
 {
-    public class Action : IDisposable
+    public class AnonymousType : IDisposable
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public Action(IEmployeeRepository employeeRepository)
+        public AnonymousType(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public void RunActionExample()
+        public void RunAnonymousTypeExample()
         {
-            //list of employees
+            //Create a list of employees
             List<Employee> employees = _employeeRepository.GetEmployees();
 
-            //Action with lambda expression
-            Action<Employee> printSeniority = (Employee e) => {
+            //array of anonymous type
+            var staff = from e in employees
+                            select new { Id = e.Id, Name = e.Name };
 
-                string seniority;
-                
-                if (e.Experience < 3)
-                {
-                    seniority = "Junior";
-                }
-                else if (e.Experience >= 3 && e.Experience < 5)
-                {
-                    seniority = "SemiSenior";
-                }
-                else 
-                {
-                    seniority = "Senior";
-                }
+            //array of anonymous type using Linq
+            var experience = employees.Select(e => new { Id = e.Id, Experience = e.Experience });
 
-                Console.WriteLine($"{e.Name} is a {seniority} with {e.Experience} years of experience");
-            };
-
-            //Display seniority
-            ShowSeniority("Junior", employees, printSeniority);
-
-            Console.Read();
-        }
-
-        static void ShowSeniority(string seniority, List<Employee> employees, Action<Employee> printSeniority)
-        {
-            Console.WriteLine(seniority);
-
-            foreach (var e in employees)
+            Console.WriteLine("Staff");
+            //Display staff
+            foreach (var s in staff)
             {
-                printSeniority(e);
+                Console.WriteLine(s.Id + "-" + s.Name);
             }
 
-            Console.WriteLine();
+            Console.WriteLine("Experience");
+            //Display experience of staff
+            foreach (var e in experience)
+            {
+                Console.WriteLine(e.Id + "-" + e.Experience);
+            }
+
+            Console.Read();
         }
 
         private bool disposedValue = false; // To detect redundant calls

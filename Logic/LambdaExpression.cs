@@ -1,58 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AdvancedCSharpConceptsConsole.Models;
 using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
 {
-    public class Action : IDisposable
+    public class LambdaExpression : IDisposable
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public Action(IEmployeeRepository employeeRepository)
+        public LambdaExpression(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public void RunActionExample()
+        public void RunFuncExample()
         {
             //list of employees
             List<Employee> employees = _employeeRepository.GetEmployees();
 
-            //Action with lambda expression
-            Action<Employee> printSeniority = (Employee e) => {
+            //Func with lambda expression
+            static bool isJunior(Employee e) => e.Experience < 3;
 
-                string seniority;
-                
-                if (e.Experience < 3)
-                {
-                    seniority = "Junior";
-                }
-                else if (e.Experience >= 3 && e.Experience < 5)
-                {
-                    seniority = "SemiSenior";
-                }
-                else 
-                {
-                    seniority = "Senior";
-                }
+            //Func with lambda expression
+            static bool isSemiSenior(Employee e) => e.Experience > 5;
 
-                Console.WriteLine($"{e.Name} is a {seniority} with {e.Experience} years of experience");
-            };
+            //Func with lambda expression
+            static bool isSenior(Employee e) => e.Experience > 5;
 
-            //Display seniority
-            ShowSeniority("Junior", employees, printSeniority);
+            //Display list of seniors
+            ShowSeniority("Junior", employees.Where(isJunior).ToList());
+            ShowSeniority("SemiSenior", employees.Where(isSemiSenior).ToList());
+            ShowSeniority("Senior", employees.Where(isSenior).ToList());
 
             Console.Read();
         }
 
-        static void ShowSeniority(string seniority, List<Employee> employees, Action<Employee> printSeniority)
+        static void ShowSeniority(string seniority, List<Employee> employees)
         {
             Console.WriteLine(seniority);
 
             foreach (var e in employees)
             {
-                printSeniority(e);
+                Console.WriteLine($"{e.Name}, {e.Experience} years of experience");   
             }
 
             Console.WriteLine();

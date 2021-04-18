@@ -14,7 +14,9 @@ namespace AdvancedCSharpConceptsConsole.Repositories
 
         public List<Employee> GetEmployees()
         {
+            int nextId = 1;
             var faker = new Faker<Employee>()
+                .RuleFor(c => c.Id, f => nextId++)
                 .RuleFor(c => c.Name, f => f.Person.FirstName)
                 .RuleFor(c => c.Experience, f => f.Random.Int(1, 10));
 
