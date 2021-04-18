@@ -9,12 +9,10 @@ namespace AdvancedCSharpConceptsConsole.Logic
     public class Linq
     {
         private readonly IEmployeeRepository _employeeRepository;
-        private readonly AppSettings _appSettings;
 
-        public Linq(IEmployeeRepository employeeRepository, AppSettings appSettings)
+        public Linq(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
-            _appSettings = appSettings;
         }
 
         public async Task<List<CustomerRank>> CallStoredProcedure()

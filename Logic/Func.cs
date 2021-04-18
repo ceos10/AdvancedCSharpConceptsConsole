@@ -5,41 +5,48 @@ using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
 {
-    public delegate bool FilterSeniority(Employee e);
-
-    public class Delegates : IDisposable
+    public class Func : IDisposable
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public Delegates(IEmployeeRepository employeeRepository)
+        public Func(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public static bool IsJunior(Employee e) => e.Experience < 3;
-        public static bool IsSemiSenior(Employee e) => e.Experience >= 3 && e.Experience < 5;
-        public static bool IsSenior(Employee e) => e.Experience > 5;
-
-        public void RunDelegateExample()
+        public void RunFuncExample()
         {
             //Create a list of employees
             List<Employee> employees = _employeeRepository.GetEmployees();
 
+            //Func with anonymus method
+            Func<Employee, bool> isJunior = delegate (Employee e) {
+                return e.Experience < 3;
+            };
+
+            //Func with lambda expression
+            Func<Employee, bool> isSemiSenior = (Employee e) => e.Experience >= 3 && e.Experience < 5;
+
+            //Func with anonymus method
+            Func<Employee, bool> isSenior = delegate (Employee e) {
+                return e.Experience > 5;
+            };
+
             //Display seniority
-            ShowSeniority("Junior",employees, IsJunior);
-            ShowSeniority("SemiSenior",employees, IsSemiSenior);
-            ShowSeniority("Senior",employees, IsSenior);
+            ShowSeniority("Junior", employees, isJunior);
+            ShowSeniority("SemiSenior", employees, isSemiSenior);
+            ShowSeniority("Senior", employees, isSenior);
 
             Console.Read();
         }
 
-        static void ShowSeniority(string seniority, List<Employee> employees, FilterSeniority filter) 
+        static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filter)
         {
             Console.WriteLine(seniority);
 
             foreach (var e in employees)
             {
-                if (filter(e)) 
+                if (filter(e))
                 {
                     Console.WriteLine($"{e.Name}, {e.Experience} years of experience");
                 }
