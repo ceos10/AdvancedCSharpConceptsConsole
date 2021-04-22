@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AdvancedCSharpConceptsConsole.Logic;
+using Action = AdvancedCSharpConceptsConsole.Logic.Action;
 
 namespace AdvancedCSharpConceptsConsole
 {
@@ -38,13 +39,37 @@ namespace AdvancedCSharpConceptsConsole
                         var service1 = _serviceProvider.GetService<Delegates>();
                         service1.RunDelegateExample();
                         break;
+                    case ("ANONYMOUSMETHOD"):
+                        var service2 = _serviceProvider.GetService<AnonymousMethod>();
+                        service2.RunAnonymusMethodExample();
+                        break;
+                    case ("FUNC"):
+                        var service3 = _serviceProvider.GetService<Func>();
+                        service3.RunFuncExample();
+                        break;
+                    case ("ACTION"):
+                        var service4 = _serviceProvider.GetService<Action>();
+                        service4.RunActionExample();
+                        break;
                     case ("EVENT"):
-                        var service2 = _serviceProvider.GetService<Event>();
-                        service2.RunEventExample();
+                        var service5 = _serviceProvider.GetService<Event>();
+                        service5.RunEventExample();
                         break;
                     case ("ANONYMOUSTYPE"):
-                        var service3 = _serviceProvider.GetService<AnonymousType>();
-                        service3.RunAnonymousTypeExample();
+                        var service6 = _serviceProvider.GetService<AnonymousType>();
+                        service6.RunAnonymousTypeExample();
+                        break;
+                    case ("LAMBDA"):
+                        var service7 = _serviceProvider.GetService<LambdaExpression>();
+                        service7.RunLambdaExample();
+                        break;
+                    case ("LINQ"):
+                        var service8 = _serviceProvider.GetService<Linq>();
+                        service8.RunLinqExample();
+                        break;
+                    case ("EXTENSIONMETHOD"):
+                        var service9 = _serviceProvider.GetService<ExtensionMethod>();
+                        service9.RunExtensionMethodExample();
                         break;
                     default:
                         break;

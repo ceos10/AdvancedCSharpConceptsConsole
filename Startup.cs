@@ -32,12 +32,36 @@ namespace AdvancedCSharpConceptsConsole
                     services.AddSingleton<Delegates>();
                     break;
 
+                case "ANONYMOUSMETHOD":
+                    services.AddSingleton<AnonymousMethod>();
+                    break;
+
+                case "FUNC":
+                    services.AddSingleton<Func>();
+                    break;
+
+                case "ACTION":
+                    services.AddSingleton<Action>();
+                    break;
+
                 case "EVENT":
                     services.AddSingleton<Event>();
                     break;
 
                 case "ANONYMOUSTYPE":
                     services.AddSingleton<AnonymousType>();
+                    break;
+
+                case "LAMBDA":
+                    services.AddSingleton<LambdaExpression>();
+                    break;
+
+                case "LINQ":
+                    services.AddSingleton<Linq>();
+                    break;
+
+                case "EXTENSIONMETHOD":
+                    services.AddSingleton<ExtensionMethod>();
                     break;
             }
 
