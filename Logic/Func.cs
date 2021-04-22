@@ -37,7 +37,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             ShowSeniority("SemiSenior", employees, isSemiSenior);
             ShowSeniority("Senior", employees, isSenior);
 
-            Console.Read();
+            //Console.Read();
         }
 
         static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filter)

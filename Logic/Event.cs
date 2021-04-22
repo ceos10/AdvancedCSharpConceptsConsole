@@ -89,7 +89,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
             // Keep the console window open
             Console.WriteLine("Press any key to continue...");
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         private bool disposedValue = false; // To detect redundant calls

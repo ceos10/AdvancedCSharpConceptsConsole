@@ -15,7 +15,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<List<CustomerRank>> CallStoredProcedure()
+        public async Task<List<CustomerRank>> RunLinqExample()
         {
             return new List<CustomerRank>();
         }

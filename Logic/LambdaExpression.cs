@@ -15,7 +15,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             _employeeRepository = employeeRepository;
         }
 
-        public void RunFuncExample()
+        public void RunLambdaExample()
         {
             //list of employees
             List<Employee> employees = _employeeRepository.GetEmployees();
@@ -34,7 +34,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             ShowSeniority("SemiSenior", employees.Where(isSemiSenior).ToList());
             ShowSeniority("Senior", employees.Where(isSenior).ToList());
 
-            Console.Read();
+            //Console.Read();
         }
 
         static void ShowSeniority(string seniority, List<Employee> employees)

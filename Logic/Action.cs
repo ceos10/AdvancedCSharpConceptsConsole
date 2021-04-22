@@ -43,7 +43,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             //Display seniority
             ShowSeniority("Junior", employees, printSeniority);
 
-            Console.Read();
+            //Console.Read();
         }
 
         static void ShowSeniority(string seniority, List<Employee> employees, Action<Employee> printSeniority)

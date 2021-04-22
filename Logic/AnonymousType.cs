@@ -41,7 +41,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
                 Console.WriteLine(e.Id + "-" + e.Experience);
             }
 
-            Console.Read();
+            //Console.Read();
         }
 
         private bool disposedValue = false; // To detect redundant calls
