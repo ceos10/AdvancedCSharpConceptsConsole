@@ -1,2 +1,0 @@
-# AdvancedCSharpConceptsConsole
-Advanced C# concepts
