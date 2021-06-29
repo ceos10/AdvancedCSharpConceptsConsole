@@ -17,10 +17,12 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunActionExample()
         {
             //list of employees
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
 
             //Action with lambda expression
-            Action<Employee> printSeniority = (Employee e) => {
+            //Please rename e by employee (Delete this comment please)
+            Action<Employee> printSeniority = (Employee e) => { // Please put this curly brace on the next line (Delete this comment please)
 
                 string seniority;
                 
@@ -48,8 +50,9 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
         static void ShowSeniority(string seniority, List<Employee> employees, Action<Employee> printSeniority)
         {
-            Console.WriteLine(seniority);
-
+            Console.WriteLine(seniority); // I think this line should be removed.
+            
+            // Please rename e by employee (Delete this comment please)
             foreach (var e in employees)
             {
                 printSeniority(e);
