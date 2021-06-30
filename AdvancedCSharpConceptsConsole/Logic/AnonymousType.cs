@@ -18,13 +18,16 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunAnonymousTypeExample()
         {
             //Create a list of employees
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
 
             //array of anonymous type
+            // Please rename e by employee (Delete this comment please)
             var staff = from e in employees
                             select new { Id = e.Id, Name = e.Name };
 
             //array of anonymous type using Linq
+            // Please rename e by employee (Delete this comment please)
             var experience = employees.Select(e => new { Id = e.Id, Experience = e.Experience });
 
             Console.WriteLine("Staff");

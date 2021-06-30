@@ -18,6 +18,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunLambdaExample()
         {
             //list of employees
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
 
             //Func with lambda expression
@@ -41,6 +42,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
         {
             Console.WriteLine(seniority);
 
+            // Please rename e by employee (Delete this comment please)
             foreach (var e in employees)
             {
                 Console.WriteLine($"{e.Name}, {e.Experience} years of experience");   
