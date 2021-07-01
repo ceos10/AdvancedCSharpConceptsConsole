@@ -9,7 +9,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
     public static class EmployeeExtensions
     {
         //extension method
-        public static void PrintInformation(this Employee e) 
+        public static void PrintInformation(this Employee e)
         {
             Console.WriteLine($"{e.Name}, {e.Experience} years of experience");
         }
@@ -27,11 +27,11 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunExtensionMethodExample()
         {
             // Create a list of employees
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             //Func with anonymus method
-            Func<Employee, bool> isJunior = delegate (Employee e) {
+            Func<Employee, bool> isJunior = delegate (Employee e)
+            {
                 return e.Experience < 3;
             };
 
@@ -40,7 +40,8 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
             //Func with anonymus method
             // In this case please use the lambda expression ... e => e.Experience > 5
-            Func<Employee, bool> isSenior = delegate (Employee e) {
+            Func<Employee, bool> isSenior = delegate (Employee e)
+            {
                 return e.Experience > 5;
             };
 
@@ -52,18 +53,16 @@ namespace AdvancedCSharpConceptsConsole.Logic
             //Console.Read();
         }
 
-        // Please rename the variable filter to seniorityFilter (Delete this comment please)
-        static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filter)
+        static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> seniorityFilter)
         {
             Console.WriteLine(seniority);
 
-            // Please rename e to employee (Delete this comment please)
-            foreach (var e in employees)
+            foreach (var employee in employees)
             {
-                if (filter(e))
+                if (seniorityFilter(employee))
                 {
                     //use extension method
-                    e.PrintInformation();
+                    employee.PrintInformation();
                 }
             }
 

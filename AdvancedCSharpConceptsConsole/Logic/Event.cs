@@ -1,71 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using AdvancedCSharpConceptsConsole.Models;
+using AdvancedCSharpConceptsConsole.Events;
 using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
 {
-    // Define a class to hold custom event info
-    // Please create a separate File for this class {Create Events Folder} (Delete this comment please)
-    public class CustomEventArgs : EventArgs
-    {
-        public CustomEventArgs(string message)
-        {
-            Message = message;
-        }
-
-        public string Message { get; set; }
-    }
-
-    // Class that publishes an event
-    // Please create a separate File for this class {Create Events Folder} (Delete this comment please)
-    public class Publisher
-    {
-        // Declare the event using EventHandler<T>
-        public event EventHandler<CustomEventArgs> RaiseCustomEvent;
-
-        public void SendNotification()
-        {
-            OnRaiseCustomEvent(new CustomEventArgs("Event triggered"));
-        }
-
-        protected virtual void OnRaiseCustomEvent(CustomEventArgs e)
-        {
-            EventHandler<CustomEventArgs> raiseEvent = RaiseCustomEvent; // You could remove this line and use Invoke later
-
-            // Event will be null if there are no subscribers
-            if (raiseEvent != null)
-            {
-                e.Message += $" at {DateTime.Now}";
-
-                // Call to raise the event.
-                raiseEvent(this, e);  // Why don't you use RaiseCustomEvent?.Invoke(this, e);
-            }
-        }
-    }
-
-    //Class that subscribes to an event
-    // Please create a separate File for this class {Create Events Folder} (Delete this comment please)
-    public class Subscriber
-    {
-        private readonly Employee _employee;
-
-        public Subscriber(Employee employee, Publisher publisher)
-        {
-            _employee = employee;
-
-            // Subscribe to the event
-            publisher.RaiseCustomEvent += HandleCustomEvent;
-        }
-
-        // Define what actions to take when the event is raised.
-        void HandleCustomEvent(object sender, CustomEventArgs e)
-        {
-            Console.WriteLine($"{_employee.Name} received this message: {e.Message}");
-        }
-    }
-
     public class Event : IDisposable
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -77,17 +16,15 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
         public void RunEventExample()
         {
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             var publisher = new Publisher();
             int i = 1;
 
-            //Please rename e by employee (Delete this comment please)
-            foreach (var e in employees)
+            foreach (var employee in employees)
             {
                 Console.WriteLine($"Cycle n° {i}");
-                new Subscriber(e, publisher);
+                new Subscriber(employee, publisher);
                 Thread.Sleep(100);
                 publisher.SendNotification();
                 i++;

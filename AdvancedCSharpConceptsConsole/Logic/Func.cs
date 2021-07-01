@@ -17,11 +17,11 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunFuncExample()
         {
             //Create a list of employees
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             //Func with anonymus method
-            Func<Employee, bool> isJunior = delegate (Employee e) {
+            Func<Employee, bool> isJunior = delegate (Employee e)
+            {
                 return e.Experience < 3;
             };
 
@@ -29,7 +29,8 @@ namespace AdvancedCSharpConceptsConsole.Logic
             Func<Employee, bool> isSemiSenior = (Employee e) => e.Experience >= 3 && e.Experience < 5;
 
             //Func with anonymus method
-            Func<Employee, bool> isSenior = delegate (Employee e) {
+            Func<Employee, bool> isSenior = delegate (Employee e)
+            {
                 return e.Experience > 5;
             };
 
@@ -41,17 +42,15 @@ namespace AdvancedCSharpConceptsConsole.Logic
             //Console.Read();
         }
 
-        //Please rename the variable filter to filterSeniority  (Delete this comment please)
-        static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filter)
+        static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filterSeniority)
         {
             Console.WriteLine(seniority);
 
-            // Please rename e by employee (Delete this comment please)
-            foreach (var e in employees)
+            foreach (var employee in employees)
             {
-                if (filter(e))
+                if (filterSeniority(employee))
                 {
-                    Console.WriteLine($"{e.Name}, {e.Experience} years of experience");
+                    Console.WriteLine($"{employee.Name}, {employee.Experience} years of experience");
                 }
             }
 

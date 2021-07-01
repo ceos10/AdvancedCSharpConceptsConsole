@@ -18,8 +18,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunLambdaExample()
         {
             //list of employees
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             //Func with lambda expression
             static bool isJunior(Employee e) => e.Experience < 3;
@@ -42,10 +41,9 @@ namespace AdvancedCSharpConceptsConsole.Logic
         {
             Console.WriteLine(seniority);
 
-            // Please rename e by employee (Delete this comment please)
-            foreach (var e in employees)
+            foreach (var employee in employees)
             {
-                Console.WriteLine($"{e.Name}, {e.Experience} years of experience");   
+                Console.WriteLine($"{employee.Name}, {employee.Experience} years of experience");
             }
 
             Console.WriteLine();

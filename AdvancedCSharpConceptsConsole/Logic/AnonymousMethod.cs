@@ -17,19 +17,20 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunAnonymusMethodExample()
         {
             //Create a list of employees
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             //Anonymus method
-            FilterSeniority isJunior = delegate(Employee e) {
+            FilterSeniority isJunior = delegate (Employee e)
+            {
                 return e.Experience < 3;
             };
 
             //Anonymus method with lambda expression
-            FilterSeniority isSemiSenior = (Employee e) =>  e.Experience >= 3 && e.Experience < 5;
+            FilterSeniority isSemiSenior = (Employee e) => e.Experience >= 3 && e.Experience < 5;
 
             //Anonymus method
-            FilterSeniority isSenior = delegate (Employee e) {
+            FilterSeniority isSenior = delegate (Employee e)
+            {
                 return e.Experience > 5;
             };
 
@@ -41,17 +42,15 @@ namespace AdvancedCSharpConceptsConsole.Logic
             //Console.Read();
         }
 
-        //Please rename the variable filter to filterSeniority  (Delete this comment please)
-        static void ShowSeniority(string seniority, List<Employee> employees, FilterSeniority filter)
+        static void ShowSeniority(string seniority, List<Employee> employees, FilterSeniority filterSeniority)
         {
             Console.WriteLine(seniority);
 
-            // Please rename e by employee (Delete this comment please)
-            foreach (var e in employees)
+            foreach (var employee in employees)
             {
-                if (filter(e))
+                if (filterSeniority(employee))
                 {
-                    Console.WriteLine($"{e.Name}, {e.Experience} years of experience");
+                    Console.WriteLine($"{employee.Name}, {employee.Experience} years of experience");
                 }
             }
 

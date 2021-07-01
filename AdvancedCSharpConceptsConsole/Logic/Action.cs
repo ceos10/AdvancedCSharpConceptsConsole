@@ -17,29 +17,27 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunActionExample()
         {
             //list of employees
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             //Action with lambda expression
-            //Please rename e by employee (Delete this comment please)
-            Action<Employee> printSeniority = (Employee e) => { // Please put this curly brace on the next line (Delete this comment please)
-
+            Action<Employee> printSeniority = (Employee employee) =>
+            {
                 string seniority;
-                
-                if (e.Experience < 3)
+
+                if (employee.Experience < 3)
                 {
                     seniority = "Junior";
                 }
-                else if (e.Experience >= 3 && e.Experience < 5)
+                else if (employee.Experience >= 3 && employee.Experience < 5)
                 {
                     seniority = "SemiSenior";
                 }
-                else 
+                else
                 {
                     seniority = "Senior";
                 }
 
-                Console.WriteLine($"{e.Name} is a {seniority} with {e.Experience} years of experience");
+                Console.WriteLine($"{employee.Name} is a {seniority} with {employee.Experience} years of experience");
             };
 
             //Display seniority
@@ -51,11 +49,10 @@ namespace AdvancedCSharpConceptsConsole.Logic
         static void ShowSeniority(string seniority, List<Employee> employees, Action<Employee> printSeniority)
         {
             Console.WriteLine(seniority); // I think this line should be removed.
-            
-            // Please rename e by employee (Delete this comment please)
-            foreach (var e in employees)
+
+            foreach (var employee in employees)
             {
-                printSeniority(e);
+                printSeniority(employee);
             }
 
             Console.WriteLine();

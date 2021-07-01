@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using AdvancedCSharpConceptsConsole.Models;
 using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
@@ -18,17 +16,14 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunAnonymousTypeExample()
         {
             //Create a list of employees
-            // Please use var instead of specific types (Delete this comment please)
-            List<Employee> employees = _employeeRepository.GetEmployees();
+            var employees = _employeeRepository.GetEmployees();
 
             //array of anonymous type
-            // Please rename e by employee (Delete this comment please)
-            var staff = from e in employees
-                            select new { Id = e.Id, Name = e.Name };
+            var staff = from employee in employees
+                        select new { Id = employee.Id, Name = employee.Name };
 
             //array of anonymous type using Linq
-            // Please rename e by employee (Delete this comment please)
-            var experience = employees.Select(e => new { Id = e.Id, Experience = e.Experience });
+            var experience = employees.Select(employee => new { Id = employee.Id, Experience = employee.Experience });
 
             Console.WriteLine("Staff");
             //Display staff
