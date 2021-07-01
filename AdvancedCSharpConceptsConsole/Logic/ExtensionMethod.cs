@@ -5,6 +5,7 @@ using AdvancedCSharpConceptsConsole.Repositories;
 
 namespace AdvancedCSharpConceptsConsole.Logic
 {
+    // Please extract this class on separated file inside a folder called Extensions
     public static class EmployeeExtensions
     {
         //extension method
@@ -25,7 +26,8 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
         public void RunExtensionMethodExample()
         {
-            //Create a list of employees
+            // Create a list of employees
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
 
             //Func with anonymus method
@@ -37,6 +39,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             Func<Employee, bool> isSemiSenior = (Employee e) => e.Experience >= 3 && e.Experience < 5;
 
             //Func with anonymus method
+            // In this case please use the lambda expression ... e => e.Experience > 5
             Func<Employee, bool> isSenior = delegate (Employee e) {
                 return e.Experience > 5;
             };
@@ -49,10 +52,12 @@ namespace AdvancedCSharpConceptsConsole.Logic
             //Console.Read();
         }
 
+        // Please rename the variable filter to seniorityFilter (Delete this comment please)
         static void ShowSeniority(string seniority, List<Employee> employees, Func<Employee, bool> filter)
         {
             Console.WriteLine(seniority);
 
+            // Please rename e to employee (Delete this comment please)
             foreach (var e in employees)
             {
                 if (filter(e))

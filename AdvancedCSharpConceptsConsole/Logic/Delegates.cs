@@ -23,6 +23,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunDelegateExample()
         {
             //Create a list of employees
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
 
             //Display seniority
@@ -33,10 +34,12 @@ namespace AdvancedCSharpConceptsConsole.Logic
             //Console.Read();
         }
 
+        //Please rename the variable filter to filterSeniority  (Delete this comment please)
         static void ShowSeniority(string seniority, List<Employee> employees, FilterSeniority filter) 
         {
             Console.WriteLine(seniority);
 
+            // Please rename e by employee (Delete this comment please)
             foreach (var e in employees)
             {
                 if (filter(e)) 

@@ -19,6 +19,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
         public void RunLinqExample()
         {
             //list of employees
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
             List<int> years = employees.Select(e => e.Experience).ToList();
 

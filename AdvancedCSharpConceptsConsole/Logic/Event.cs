@@ -7,6 +7,7 @@ using AdvancedCSharpConceptsConsole.Repositories;
 namespace AdvancedCSharpConceptsConsole.Logic
 {
     // Define a class to hold custom event info
+    // Please create a separate File for this class {Create Events Folder} (Delete this comment please)
     public class CustomEventArgs : EventArgs
     {
         public CustomEventArgs(string message)
@@ -18,6 +19,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
     }
 
     // Class that publishes an event
+    // Please create a separate File for this class {Create Events Folder} (Delete this comment please)
     public class Publisher
     {
         // Declare the event using EventHandler<T>
@@ -30,7 +32,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
         protected virtual void OnRaiseCustomEvent(CustomEventArgs e)
         {
-            EventHandler<CustomEventArgs> raiseEvent = RaiseCustomEvent;
+            EventHandler<CustomEventArgs> raiseEvent = RaiseCustomEvent; // You could remove this line and use Invoke later
 
             // Event will be null if there are no subscribers
             if (raiseEvent != null)
@@ -38,12 +40,13 @@ namespace AdvancedCSharpConceptsConsole.Logic
                 e.Message += $" at {DateTime.Now}";
 
                 // Call to raise the event.
-                raiseEvent(this, e);
+                raiseEvent(this, e);  // Why don't you use RaiseCustomEvent?.Invoke(this, e);
             }
         }
     }
 
     //Class that subscribes to an event
+    // Please create a separate File for this class {Create Events Folder} (Delete this comment please)
     public class Subscriber
     {
         private readonly Employee _employee;
@@ -62,6 +65,7 @@ namespace AdvancedCSharpConceptsConsole.Logic
             Console.WriteLine($"{_employee.Name} received this message: {e.Message}");
         }
     }
+
     public class Event : IDisposable
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -73,11 +77,13 @@ namespace AdvancedCSharpConceptsConsole.Logic
 
         public void RunEventExample()
         {
+            // Please use var instead of specific types (Delete this comment please)
             List<Employee> employees = _employeeRepository.GetEmployees();
 
             var publisher = new Publisher();
             int i = 1;
 
+            //Please rename e by employee (Delete this comment please)
             foreach (var e in employees)
             {
                 Console.WriteLine($"Cycle n° {i}");
